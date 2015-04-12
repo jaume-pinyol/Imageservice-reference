@@ -13,7 +13,7 @@
 
 <h2>Paths</h2>
 
-
+    
     <div class="panel panel-method-delete">
     <div class="panel-heading">
         <div class="method-summary">Deletes an image to the service</div>
@@ -23,9 +23,30 @@
         <section class="sw-method-description">
             Deletes an image using the upload service
         </section>
-
-
-
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path</td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        string                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
     <section class="sw-response-body">
         <p><span class="label label-default">application/json</span> </p>
 
@@ -45,7 +66,7 @@
                             Image deleted successfully
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -54,19 +75,6 @@
             </tbody>
         </table>
     </section>
-
-            </div>
-</div>    <div class="panel panel-method-parameters">
-    <div class="panel-heading">
-        <div class="method-summary"></div>
-        <h3 class="panel-title"><span class="method-name">PARAMETERS</span> <strong>/file/{image_path}</strong></h3>
-    </div>
-    <div class="panel-body">
-        <section class="sw-method-description">
-
-        </section>
-
-
 
             </div>
 </div>    <div class="panel panel-method-post">
@@ -78,9 +86,30 @@
         <section class="sw-method-description">
             Uploads an image using the upload service
         </section>
-
-
-
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path</td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        string                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
     <section class="sw-response-body">
         <p><span class="label label-default">application/json</span> </p>
 
@@ -100,7 +129,7 @@
                             Image already exists
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -113,7 +142,7 @@
                             Image succesfully uploaded
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -126,7 +155,7 @@
                             Internal error
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -137,7 +166,7 @@
     </section>
 
             </div>
-</div>
+</div>    
     <div class="panel panel-method-post">
     <div class="panel-heading">
         <div class="method-summary">Identity Creation</div>
@@ -147,9 +176,9 @@
         <section class="sw-method-description">
             The Identity endpoint creates a user in the service
         </section>
-
-
-
+        
+        
+        
     <section class="sw-response-body">
         <p><span class="label label-default">application/json</span> </p>
 
@@ -169,7 +198,7 @@
                             Identity created correctly
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -180,7 +209,7 @@
     </section>
 
             </div>
-</div>
+</div>    
     <div class="panel panel-method-get">
     <div class="panel-heading">
         <div class="method-summary">get the image</div>
@@ -190,8 +219,8 @@
         <section class="sw-method-description">
             get the image
         </section>
-
-
+        
+        
     <section class="sw-request-params">
         <table class="table">
             <thead>
@@ -227,7 +256,7 @@
             </tbody>
         </table>
     </section>
-
+        
     <section class="sw-response-body">
         <p></p>
 
@@ -247,7 +276,7 @@
                             Image Found
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
@@ -260,7 +289,7 @@
                             Image Not Found
                         </div>
                         <section class="visible-xs visible-sm">
-
+                            
                         </section>
                     </td>
                     <td class="hidden-xs hidden-sm">

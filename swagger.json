@@ -34,7 +34,19 @@
                     "500": {
                         "description": "Internal error"
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "image_path",
+                        "in": "path",
+                        "description": "path to image, path/to/image.jpg",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -49,20 +61,20 @@
                     "200": {
                         "description": "Image deleted successfully"
                     }
-                }
-            },
-            "parameters": [
-                {
-                    "name": "image_path",
-                    "in": "path",
-                    "description": "path to image, path/to/image.jpg",
-                    "required": true,
-                    "type": "string",
-                    "items": {
-                        "type": "string"
+                },
+                "parameters": [
+                    {
+                        "name": "image_path",
+                        "in": "path",
+                        "description": "path to image, path/to/image.jpg",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
                     }
-                }
-            ]
+                ]
+            }
         },
         "/{site_path}/{size}/{image_path}": {
             "get": {

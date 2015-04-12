@@ -15,6 +15,7 @@ basePath: /v1
 produces:
   - application/json
 paths:
+
   /file/{image_path}:
     post:
       tags:  
@@ -32,6 +33,14 @@ paths:
           description: Image already exists
         500:
           description: Internal error
+      parameters:
+      - name: image_path
+        in: path
+        description: path to image, path/to/image.jpg
+        required: true
+        type: string
+        items:
+          type: string
     delete:
       tags:  
         - Upload Service
@@ -43,14 +52,14 @@ paths:
       responses:
         200:
           description: Image deleted successfully
-    parameters:
-      - name: image_path
-        in: path
-        description: path to image, path/to/image.jpg
-        required: true
-        type: string
-        items:
+      parameters:
+        - name: image_path
+          in: path
+          description: path to image, path/to/image.jpg
+          required: true
           type: string
+          items:
+            type: string
   /{site_path}/{size}/{image_path}:
     get:
       tags:  
