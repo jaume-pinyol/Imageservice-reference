@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="container">
+              <h1>ImageService API</h1>
+
+<p>Move your app forward with the ImageService API</p>
+
+
+
+<h2>Paths</h2>
+
+
+    <div class="panel panel-method-delete">
+    <div class="panel-heading">
+        <div class="method-summary">Deletes an image to the service</div>
+        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Deletes an image using the upload service
+        </section>
+
+
+
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image deleted successfully
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div class="panel panel-method-parameters">
+    <div class="panel-heading">
+        <div class="method-summary"></div>
+        <h3 class="panel-title"><span class="method-name">PARAMETERS</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+
+        </section>
+
+
+
+            </div>
+</div>    <div class="panel panel-method-post">
+    <div class="panel-heading">
+        <div class="method-summary">Uploads an image to the service</div>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Uploads an image using the upload service
+        </section>
+
+
+
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image already exists
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>201</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image succesfully uploaded
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>
+    <div class="panel panel-method-post">
+    <div class="panel-heading">
+        <div class="method-summary">Identity Creation</div>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/identity</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            The Identity endpoint creates a user in the service
+        </section>
+
+
+
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Identity created correctly
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>
+    <div class="panel panel-method-get">
+    <div class="panel-heading">
+        <div class="method-summary">get the image</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/{site_path}/{size}/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            get the image
+        </section>
+
+
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path</td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        string                    </td>
+                </tr>
+                <tr>
+                    <td>site_path</td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        string                    </td>
+                </tr>
+                <tr>
+                    <td>size</td>
+                    <td>size of the image with the format widthxheight (300x300)</td>
+                    <td>path</td>
+                    <td>
+                        string                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image Found
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image Not Found
+                        </div>
+                        <section class="visible-xs visible-sm">
+
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>
+
+<h2>Definitions</h2>
+
+        </div>
+    </body>
+</html>
