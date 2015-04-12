@@ -1,0 +1,106 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: ImageService API
+  description: Move your app forward with the ImageService API
+  version: "1.0.0"
+# the domain of the service
+host: api.private.zuul.schibsted.io
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /file/{image_path}:
+    post:
+      tags:  
+        - Upload Service
+      #security:
+      summary: Uploads an image to the service
+      description:
+          Uploads an image using the upload service
+      produces:
+        - application/json
+      responses:
+        201:
+          description: Image succesfully uploaded
+        200:
+          description: Image already exists
+        500:
+          description: Internal error
+    delete:
+      tags:  
+        - Upload Service
+      summary: Deletes an image to the service
+      description:
+          Deletes an image using the upload service
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Image deleted successfully
+    parameters:
+      - name: image_path
+        in: path
+        description: path to image, path/to/image.jpg
+        required: true
+        type: string
+        items:
+          type: string
+  /{site_path}/{size}/{image_path}:
+    get:
+      tags:  
+      - Delivery Service
+      summary: get the image
+      description: get the image
+      responses:
+        200:
+          description: Image Found
+        404: 
+          description: Image Not Found
+      parameters:
+        - name: image_path
+          in: path
+          description: path to image, path/to/image.jpg
+          required: true
+          type: string
+          
+        - name: site_path
+          in: path
+          description: site path set when creating the account
+          required: true
+          type: string
+          
+        - name: size
+          in: path
+          description:
+            size of the image with the format widthxheight (300x300)
+          required: true
+          type: string
+          
+  /identity:
+    post:
+      tags:  
+      - Identity Service
+      summary: Identity Creation
+      description: 
+        The Identity endpoint creates a user in the service
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Identity created correctly
+#definitions:
+ # Error:
+  #  properties:
+   #   code:
+    #    type: integer
+     #   format: int32
+      #message:
+       # type: string
+      #fields:
+       # type: string
