@@ -6,16 +6,17 @@ info:
   description: Move your app forward with the ImageService API
   version: "1.0.0"
 # the domain of the service
-host: api.private.zuul.schibsted.io
+host: api.images.schibsted.io
 # array of all schemes that your API supports
 schemes:
   - http
 # will be prefixed to all paths
-basePath: /v1
+#basePath: /v1
 produces:
   - application/json
+security:
+  - internalApiKey: []
 paths:
-
   /file/{image_path}:
     post:
       tags:  
@@ -41,6 +42,9 @@ paths:
         type: string
         items:
           type: string
+      security:
+        - internalApiKey: []
+        
     delete:
       tags:  
         - Upload Service
@@ -60,6 +64,9 @@ paths:
           type: string
           items:
             type: string
+            
+      security:
+        - internalApiKey: []
   /{site_path}/{size}/{image_path}:
     get:
       tags:  
@@ -103,6 +110,13 @@ paths:
       responses:
         200:
           description: Identity created correctly
+
+securityDefinitions:
+  internalApiKey:
+    name: SCMClientId
+    type: apiKey
+    in: header
+
 #definitions:
  # Error:
   #  properties:

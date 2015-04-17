@@ -5,13 +5,17 @@
         "description": "Move your app forward with the ImageService API",
         "version": "1.0.0"
     },
-    "host": "api.private.zuul.schibsted.io",
+    "host": "api.images.schibsted.io",
     "schemes": [
         "http"
     ],
-    "basePath": "/v1",
     "produces": [
         "application/json"
+    ],
+    "security": [
+        {
+            "internalApiKey": []
+        }
     ],
     "paths": {
         "/file/{image_path}": {
@@ -46,6 +50,11 @@
                             "type": "string"
                         }
                     }
+                ],
+                "security": [
+                    {
+                        "internalApiKey": []
+                    }
                 ]
             },
             "delete": {
@@ -72,6 +81,11 @@
                         "items": {
                             "type": "string"
                         }
+                    }
+                ],
+                "security": [
+                    {
+                        "internalApiKey": []
                     }
                 ]
             }
@@ -132,6 +146,13 @@
                     }
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "internalApiKey": {
+            "name": "SCMClientId",
+            "type": "apiKey",
+            "in": "header"
         }
     }
 }
