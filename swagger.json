@@ -5,12 +5,23 @@
         "description": "Move your app forward with the ImageService API",
         "version": "1.0.0"
     },
-    "host": "api.images.schibsted.io",
+    "host": "api.images-pre.schibsted.io",
     "schemes": [
         "http"
     ],
+    "consumes": [
+        "multipart/form-data",
+        "application/json",
+        "application/octet-stream",
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ],
     "produces": [
-        "application/json"
+        "application/json",
+        "image/jpeg",
+        "image/png",
+        "image/webp"
     ],
     "security": [
         {
@@ -25,6 +36,11 @@
                 ],
                 "summary": "Uploads an image to the service",
                 "description": "Uploads an image using the upload service. A x-location and x-id headers are set with the path. Id will be a UUID.",
+                "consumes": [
+                    "image/png",
+                    "image/jpg",
+                    "multipart/form-data"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -33,37 +49,54 @@
                         "description": "Image already exists"
                     },
                     "201": {
-                        "description": "Image succesfully uploaded"
+                        "description": "Image succesfully uploaded",
+                        "headers": {
+                            "x-location": {
+                                "type": "string",
+                                "description": "id of the image with the location in the api file/id"
+                            },
+                            "x-id": {
+                                "type": "string",
+                                "description": "id of the image"
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal error"
                     }
-                },
-                "security": [
-                    {
-                        "internalApiKey": []
-                    }
-                ]
+                }
             },
             "delete": {
                 "tags": [
                     "Upload Service"
                 ],
                 "summary": "Batch delete",
-                "description": "Deletes an image using the upload service",
+                "description": "Deletes an image using",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "files",
+                        "in": "body",
+                        "description": "files to delete",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DeleteBatch"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "Image deleted successfully"
+                    },
+                    "500": {
+                        "description": "Internal error"
                     }
-                },
-                "security": [
-                    {
-                        "internalApiKey": []
-                    }
-                ]
+                }
             }
         },
         "/file/{image_path}": {
@@ -98,11 +131,6 @@
                             "type": "string"
                         }
                     }
-                ],
-                "security": [
-                    {
-                        "internalApiKey": []
-                    }
                 ]
             },
             "delete": {
@@ -129,11 +157,6 @@
                         "items": {
                             "type": "string"
                         }
-                    }
-                ],
-                "security": [
-                    {
-                        "internalApiKey": []
                     }
                 ]
             },
@@ -168,18 +191,13 @@
                             "type": "string"
                         }
                     }
-                ],
-                "security": [
-                    {
-                        "internalApiKey": []
-                    }
                 ]
             },
             "put": {
                 "tags": [
                     "Upload Service"
                 ],
-                "summary": "Updates an image",
+                "summary": "Updates an image with the {image_path}",
                 "description": "Updates an image with a different one",
                 "produces": [
                     "application/json"
@@ -205,11 +223,6 @@
                         "items": {
                             "type": "string"
                         }
-                    }
-                ],
-                "security": [
-                    {
-                        "internalApiKey": []
                     }
                 ]
             }
@@ -316,6 +329,15 @@
                 },
                 "parameters": [
                     {
+                        "name": "rule",
+                        "in": "body",
+                        "description": "Pet to add to the store",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Rule"
+                        }
+                    },
+                    {
                         "name": "site_alias",
                         "in": "path",
                         "description": "site path set when creating the account",
@@ -335,7 +357,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "schema": {
+                            "properties": {
+                                "rules": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Rule"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal error"
@@ -363,7 +395,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/Rule"
+                        }
                     },
                     "404": {
                         "description": "Rule not found"
@@ -394,6 +429,9 @@
                     "Accout-configuration Service"
                 ],
                 "summary": "Update rule",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -409,6 +447,15 @@
                     }
                 },
                 "parameters": [
+                    {
+                        "name": "rule",
+                        "in": "body",
+                        "description": "Pet to add to the store",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Rule"
+                        }
+                    },
                     {
                         "name": "site_alias",
                         "in": "path",
@@ -493,7 +540,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/Watermark"
+                        }
                     },
                     "500": {
                         "description": "Internal error"
@@ -606,6 +656,122 @@
                         "required": true
                     }
                 ]
+            }
+        }
+    },
+    "definitions": {
+        "DeleteBatch": {
+            "required": [
+                "files"
+            ],
+            "properties": {
+                "files": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "image_id"
+                    }
+                }
+            }
+        },
+        "Watermark": {
+            "properties": {
+                "etag": {
+                    "type": "string"
+                },
+                "last_modified": {
+                    "type": "string"
+                }
+            }
+        },
+        "Rule": {
+            "required": [
+                "rule_name",
+                "config",
+                "rule"
+            ],
+            "properties": {
+                "rule_name": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific name for a rule"
+                },
+                "config": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/Config"
+                    },
+                    "description": "Description of product."
+                },
+                "rule": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RuleAction"
+                    },
+                    "description": "Display name of product."
+                }
+            }
+        },
+        "Config": {
+            "properties": {
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "quality": {
+                    "type": "number"
+                }
+            }
+        },
+        "RuleAction": {
+            "type": "object",
+            "properties": {
+                "resize": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/ResizeAction"
+                    },
+                    "description": "Description of product."
+                },
+                "uprigth": {
+                    "type": "string",
+                    "description": "Description of product."
+                },
+                "watermark": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/WatermarkAction"
+                    },
+                    "description": "Description of product."
+                }
+            }
+        },
+        "ResizeAction": {
+            "properties": {
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "upscale": {
+                    "type": "boolean"
+                },
+                "distort": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "WatermarkAction": {
+            "type": "object",
+            "required": [
+                "filename"
+            ],
+            "properties": {
+                "filename": {
+                    "type": "string"
+                }
             }
         }
     },

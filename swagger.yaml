@@ -6,60 +6,87 @@ info:
   description: Move your app forward with the ImageService API
   version: "1.0.0"
 # the domain of the service
-host: api.images.schibsted.io
+host: api.images-pre.schibsted.io
 # array of all schemes that your API supports
 schemes:
   - http
+  #- https
 # will be prefixed to all paths
 #basePath: /v1
+consumes:
+  - multipart/form-data
+  - application/json
+  - application/octet-stream
+  - image/jpeg
+  - image/png
+  - image/webp
 produces:
   - application/json
+  - image/jpeg
+  - image/png
+  - image/webp
 security:
   - internalApiKey: []
 paths:
   /file:
     post:
-      tags:  
+      tags:
         - Upload Service
-      #security:
       summary: Uploads an image to the service
       description:
           Uploads an image using the upload service.
           A x-location and x-id headers are set with the path.
           Id will be a UUID.
+      consumes:
+        - image/png
+        - image/jpg
+        - multipart/form-data
       produces:
         - application/json
       responses:
         201:
           description: Image succesfully uploaded
+          headers:
+            x-location:
+              type: string
+              description: id of the image with the location in the api file/id
+            x-id:
+              type: string
+              description: id of the image
         200:
           description: Image already exists
         500:
           description: Internal error
-      security:
-        - internalApiKey: []
     delete:
-      tags:  
+      tags:
         - Upload Service
       summary: Batch delete
       description:
-          Deletes an image using the upload service
+          Deletes an image using
+      consumes:
+        - application/json
       produces:
         - application/json
+      parameters:
+        - name: files
+          in: body
+          description: files to delete
+          required: true
+          schema:
+            $ref: '#/definitions/DeleteBatch'
       responses:
         200:
           description: Image deleted successfully
-      security:
-        - internalApiKey: []
+        500:
+          description: Internal error
   /file/{image_path}:
     post:
-      tags:  
+      tags:
         - Upload Service
-      #security:
       summary: Uploads an image to the service
       description:
           Uploads an image using the upload service.
-          A Location header is set with the path. 
+          A Location header is set with the path.
           The image_path will be the image id.
       produces:
         - application/json
@@ -78,10 +105,8 @@ paths:
           type: string
           items:
             type: string
-      security:
-        - internalApiKey: []
     delete:
-      tags:  
+      tags:
         - Upload Service
       summary: Removes an image from the service
       description:
@@ -99,12 +124,9 @@ paths:
           type: string
           items:
             type: string
-      security:
-        - internalApiKey: []
     get:
-      tags:  
+      tags:
         - Upload Service
-      #security:
       summary: Gets an image
       description:
           Updates an image with a different one
@@ -125,13 +147,10 @@ paths:
           type: string
           items:
             type: string
-      security:
-        - internalApiKey: []
     put:
-        tags:  
+        tags:
           - Upload Service
-        #security:
-        summary: Updates an image
+        summary: Updates an image with the {image_path}
         description:
             Updates an image with a different one
         produces:
@@ -151,19 +170,17 @@ paths:
             type: string
             items:
               type: string
-        security:
-          - internalApiKey: []
 
   /{site_alias}/{rule}/{image_path}:
     get:
-      tags:  
+      tags:
       - Delivery Service
       summary: get the image
       description: get the image
       responses:
         200:
           description: Image Found
-        404: 
+        404:
           description: Image Not Found
         500:
           description: Internal error
@@ -186,14 +203,14 @@ paths:
           type: string
   /{site_alias}/{image_path}:
     get:
-      tags:  
+      tags:
       - Delivery Service
       summary: get the image
       description: get the image
       responses:
         200:
           description: Image Found
-        404: 
+        404:
           description: Image Not Found
         500:
           description: Internal error
@@ -210,10 +227,10 @@ paths:
           type: string
   /bucket/{site_alias}/rules:
     post:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Identity Creation
-      description: 
+      description:
         The Identity endpoint creates a user in the service
       consumes:
         - application/json
@@ -225,22 +242,34 @@ paths:
         500:
           description: Internal error
       parameters:
+        - name: rule
+          in: body
+          description: Pet to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Rule'
         - name: site_alias
           in: path
           description: site path set when creating the account
           required: true
-          type: string  
+          type: string
     get:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Get all the rules for a bucket
-      description: 
-        Get all the rules for bucket 
+      description:
+        Get all the rules for bucket
       produces:
         - application/json
       responses:
         200:
           description: Ok
+          schema:
+            properties:
+              rules:
+                type: array
+                items:
+                  $ref: '#/definitions/Rule'
         500:
           description: Internal error
       parameters:
@@ -248,10 +277,10 @@ paths:
           in: path
           description: site path set when creating the account
           required: true
-          type: string  
+          type: string
   /bucket/{site_alias}/rules/{rule_name}:
     get:
-        tags:  
+        tags:
         - Accout-configuration Service
         summary: Get Rule
         produces:
@@ -259,6 +288,8 @@ paths:
         responses:
           200:
             description: Ok
+            schema:
+              $ref: '#/definitions/Rule'
           404:
             description: Rule not found
           500:
@@ -275,19 +306,27 @@ paths:
           type: string
           required: true
     put:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Update rule
+      consumes:
+        - application/json
       produces:
         - application/json
       responses:
         201:
           description: Rule updated
         404:
-          description: Rule Not found 
+          description: Rule Not found
         500:
           description: Internal error
       parameters:
+        - name: rule
+          in: body
+          description: Pet to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Rule'
         - name: site_alias
           in: path
           description: site path set when creating the account
@@ -299,7 +338,7 @@ paths:
           type: string
           required: true
     delete:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Delete rule
       responses:
@@ -318,10 +357,10 @@ paths:
           description: rule_name to get
           type: string
           required: true
-          
+
   /bucket/{site_alias}/watermarks:
     post:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Add a new watermark
       produces:
@@ -338,7 +377,7 @@ paths:
           required: true
           type: string
     get:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Get All watermarks information
       produces:
@@ -346,6 +385,8 @@ paths:
       responses:
         200:
           description: Ok
+          schema:
+            $ref: '#/definitions/Watermark'
         500:
           description: Internal error
       parameters:
@@ -354,10 +395,10 @@ paths:
           description: site path set when creating the account
           required: true
           type: string
-  
+
   /bucket/{site_alias}/watermarks/{watermark_id}:
     get:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Gets a watermark information
       produces:
@@ -365,7 +406,7 @@ paths:
       responses:
         200:
           description: watermark exists
-        404: 
+        404:
           description: watermark not found
         500:
           description: Internal server error
@@ -381,7 +422,7 @@ paths:
           type: string
           required: true
     put:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Update a watermark
       produces:
@@ -401,7 +442,7 @@ paths:
           type: string
           required: true
     delete:
-      tags:  
+      tags:
       - Accout-configuration Service
       summary: Delete a watermark
       produces:
@@ -420,7 +461,89 @@ paths:
           description: watermark id
           type: string
           required: true
-  
+
+definitions:
+  DeleteBatch:
+    required:
+      - files
+    properties:
+      files:
+        type: array
+        items:
+          type: string
+          description: image_id
+  Watermark:
+    properties:
+      etag:
+        type: string
+      last_modified:
+        type: string
+  Rule:
+    required:
+    - rule_name
+    - config
+    - rule
+    properties:
+      rule_name:
+        type: string
+        description: Unique identifier representing a specific name for a rule
+      config:
+        type: object
+        items:
+          $ref: '#/definitions/Config'
+        description: Description of product.
+      rule:
+        type: array
+        items:
+          $ref: '#/definitions/RuleAction'
+        description: Display name of product.
+
+  Config:
+    properties:
+      width:
+        type: number
+      height:
+        type: number
+      quality:
+        type: number
+
+  RuleAction:
+    type: object
+    properties:
+      resize:
+        type: object
+        items:
+          $ref: '#/definitions/ResizeAction'
+        description: Description of product.
+      uprigth:
+        type: string
+        description: Description of product.
+      watermark:
+        type: object
+        items:
+          $ref: '#/definitions/WatermarkAction'
+        description: Description of product.
+
+  ResizeAction:
+    properties:
+      width:
+        type: number
+      height:
+        type: number
+      upscale:
+        type: boolean
+      distort:
+        type: boolean
+  WatermarkAction:
+    type: object
+    required:
+      - filename
+    properties:
+      filename:
+        type: string
+
+
+
 securityDefinitions:
   internalApiKey:
     name: SCMClientId

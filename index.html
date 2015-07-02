@@ -163,7 +163,7 @@
                     <a href="#method--file--image_path--put">PUT</a>
                 </td>
                 <td>
-                    Updates an image
+                    Updates an image with the {image_path}
                 </td>
             </tr>
             <tr>
@@ -277,10 +277,62 @@
                         </div>
                         <section class="visible-xs visible-sm">
                             
-                        </section>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">rules:</span>
+                <span class="json-property-type">
+        object[]
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</section>                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>                        </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
-</td>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">rules:</span>
+                <span class="json-property-type">
+        object[]
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</section>                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div></td>
                 </tr>
                 <tr>
                     <td>500</td>
@@ -312,6 +364,18 @@
         
     <section class="sw-request-body">
         <p><span class="label label-default">application/json</span> </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Pet to add to the store</p>
+                    </div>
+                    <div class="col-md-6 sw-request-model">
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</div></div>
+                </div>
     </section>
         
     <section class="sw-request-params">
@@ -554,10 +618,20 @@
                         </div>
                         <section class="visible-xs visible-sm">
                             
-                        </section>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</div>                        </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
-</td>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</div></td>
                 </tr>
                 <tr>
                     <td>404</td>
@@ -600,6 +674,21 @@
             
         </section>
         
+    <section class="sw-request-body">
+        <p><span class="label label-default">application/json</span> </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Pet to add to the store</p>
+                    </div>
+                    <div class="col-md-6 sw-request-model">
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Rule">Rule</a>
+
+    </div>
+</div></div>
+                </div>
+    </section>
         
     <section class="sw-request-params">
         <table class="table">
@@ -759,10 +848,20 @@
                         </div>
                         <section class="visible-xs visible-sm">
                             
-                        </section>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Watermark">Watermark</a>
+
+    </div>
+</div>                        </section>
                     </td>
                     <td class="hidden-xs hidden-sm">
-</td>
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Watermark">Watermark</a>
+
+    </div>
+</div></td>
                 </tr>
                 <tr>
                     <td>500</td>
@@ -1147,9 +1246,24 @@
     </div>
     <div class="panel-body">
         <section class="sw-method-description">
-            Deletes an image using the upload service
+            Deletes an image using
         </section>
         
+    <section class="sw-request-body">
+        <p><span class="label label-default">application/json</span> </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>files to delete</p>
+                    </div>
+                    <div class="col-md-6 sw-request-model">
+    <div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/DeleteBatch">DeleteBatch</a>
+
+    </div>
+</div></div>
+                </div>
+    </section>
         
         
     <section class="sw-response-body">
@@ -1177,28 +1291,24 @@
                     <td class="hidden-xs hidden-sm">
 </td>
                 </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
             </tbody>
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    <div id="method--file-post" class="swagger--panel-method-post panel">
     <div class="panel-heading">
         <div class="method-summary">Uploads an image to the service</div>
@@ -1209,6 +1319,9 @@
             Uploads an image using the upload service. A x-location and x-id headers are set with the path. Id will be a UUID.
         </section>
         
+    <section class="sw-request-body">
+        <p><span class="label label-default">image/png</span> <span class="label label-default">image/jpg</span> <span class="label label-default">multipart/form-data</span> </p>
+    </section>
         
         
     <section class="sw-response-body">
@@ -1266,24 +1379,7 @@
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    
 <span id="path-/file/{image_path}"></span>
     <div id="method--file--image_path--delete" class="swagger--panel-method-delete panel">
@@ -1372,24 +1468,7 @@
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    <div id="method--file--image_path--get" class="swagger--panel-method-get panel">
     <div class="panel-heading">
         <div class="method-summary">Gets an image</div>
@@ -1489,24 +1568,7 @@
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    <div id="method--file--image_path--post" class="swagger--panel-method-post panel">
     <div class="panel-heading">
         <div class="method-summary">Uploads an image to the service</div>
@@ -1606,27 +1668,10 @@
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    <div id="method--file--image_path--put" class="swagger--panel-method-put panel">
     <div class="panel-heading">
-        <div class="method-summary">Updates an image</div>
+        <div class="method-summary">Updates an image with the {image_path}</div>
         <h3 class="panel-title"><span class="method-name">PUT</span> <strong>/file/{image_path}</strong></h3>
     </div>
     <div class="panel-body">
@@ -1723,24 +1768,7 @@
         </table>
     </section>
 
-            <section class="sw-request-security">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="sw-request-security-schema"></th>
-                <th class="sw-request-security-scopes"></th>
-            </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
-                        <td>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-    </section>
-    </div>
+            </div>
 </div>    
 <span id="path-/{site_alias}/{image_path}"></span>
     <div id="method---site_alias---image_path--get" class="swagger--panel-method-get panel">
@@ -1978,6 +2006,385 @@
 
 <h2>Definitions</h2>
 
-</div>
+    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/DeleteBatch"></a>DeleteBatch:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">files:</span>
+                <span class="json-property-type">
+        string[]
+</span>
+
+                    <span class="json-property-required"></span>
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <section class="json-schema-description">
+        image_id
+    </section>
+
+    </div>
+</section>                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Watermark"></a>Watermark:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">etag:</span>
+                <span class="json-property-type">
+        string
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">last_modified:</span>
+                <span class="json-property-type">
+        string
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Rule"></a>Rule:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">rule_name:</span>
+                <span class="json-property-type">
+        string
+</span>
+
+                    <span class="json-property-required"></span>
+            </dt>
+            <dd>
+                Unique identifier representing a specific name for a rule
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">config:</span>
+                <span class="json-property-type">
+        object
+</span>
+
+                    <span class="json-property-required"></span>
+            </dt>
+            <dd>
+                Description of product.
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Config">Config</a>
+
+    </div>
+</section>                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">rule:</span>
+                <span class="json-property-type">
+        object[]
+</span>
+
+                    <span class="json-property-required"></span>
+            </dt>
+            <dd>
+                Display name of product.
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/RuleAction">RuleAction</a>
+
+    </div>
+</section>                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Config"></a>Config:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">width:</span>
+                <span class="json-property-type">
+        number
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">height:</span>
+                <span class="json-property-type">
+        number
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">quality:</span>
+                <span class="json-property-type">
+        number
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/RuleAction"></a>RuleAction:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">resize:</span>
+                <span class="json-property-type">
+        object
+</span>
+
+            </dt>
+            <dd>
+                Description of product.
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/ResizeAction">ResizeAction</a>
+
+    </div>
+</section>                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">uprigth:</span>
+                <span class="json-property-type">
+        string
+</span>
+
+            </dt>
+            <dd>
+                Description of product.
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">watermark:</span>
+                <span class="json-property-type">
+        object
+</span>
+
+            </dt>
+            <dd>
+                Description of product.
+                <div class="json-inner-schema">
+                    
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/WatermarkAction">WatermarkAction</a>
+
+    </div>
+</section>                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/ResizeAction"></a>ResizeAction:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">width:</span>
+                <span class="json-property-type">
+        number
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">height:</span>
+                <span class="json-property-type">
+        number
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">upscale:</span>
+                <span class="json-property-type">
+        boolean
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">distort:</span>
+                <span class="json-property-type">
+        boolean
+</span>
+
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    <div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/WatermarkAction"></a>WatermarkAction:
+                    <span class="json-property-type"><span class="json-property-type">
+        object
+</span>
+
+</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">filename:</span>
+                <span class="json-property-type">
+        string
+</span>
+
+                    <span class="json-property-required"></span>
+            </dt>
+            <dd>
+                
+                <div class="json-inner-schema">
+                    
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div></div>
 </body>
 </html>
