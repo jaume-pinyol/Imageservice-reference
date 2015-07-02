@@ -18,13 +18,61 @@
         }
     ],
     "paths": {
+        "/file": {
+            "post": {
+                "tags": [
+                    "Upload Service"
+                ],
+                "summary": "Uploads an image to the service",
+                "description": "Uploads an image using the upload service. A x-location and x-id headers are set with the path. Id will be a UUID.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Image already exists"
+                    },
+                    "201": {
+                        "description": "Image succesfully uploaded"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "security": [
+                    {
+                        "internalApiKey": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Upload Service"
+                ],
+                "summary": "Batch delete",
+                "description": "Deletes an image using the upload service",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Image deleted successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "internalApiKey": []
+                    }
+                ]
+            }
+        },
         "/file/{image_path}": {
             "post": {
                 "tags": [
                     "Upload Service"
                 ],
                 "summary": "Uploads an image to the service",
-                "description": "Uploads an image using the upload service",
+                "description": "Uploads an image using the upload service. A Location header is set with the path. The image_path will be the image id.",
                 "produces": [
                     "application/json"
                 ],
@@ -61,14 +109,90 @@
                 "tags": [
                     "Upload Service"
                 ],
-                "summary": "Deletes an image to the service",
-                "description": "Deletes an image using the upload service",
+                "summary": "Removes an image from the service",
+                "description": "Removes an image from the service",
+                "responses": {
+                    "200": {
+                        "description": "Image deleted"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "image_path",
+                        "in": "path",
+                        "description": "path to image, path/to/image.jpg",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "internalApiKey": []
+                    }
+                ]
+            },
+            "get": {
+                "tags": [
+                    "Upload Service"
+                ],
+                "summary": "Gets an image",
+                "description": "Updates an image with a different one",
+                "produces": [
+                    "image/(jpg|png|webp)"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Image found"
+                    },
+                    "404": {
+                        "description": "Image not found"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "image_path",
+                        "in": "path",
+                        "description": "path to image, path/to/image.jpg",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "internalApiKey": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Upload Service"
+                ],
+                "summary": "Updates an image",
+                "description": "Updates an image with a different one",
                 "produces": [
                     "application/json"
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Image deleted successfully"
+                    "201": {
+                        "description": "Image succesfully uploaded"
+                    },
+                    "404": {
+                        "description": "Image not found"
+                    },
+                    "500": {
+                        "description": "Internal error"
                     }
                 },
                 "parameters": [
@@ -90,7 +214,7 @@
                 ]
             }
         },
-        "/{site_path}/{size}/{image_path}": {
+        "/{site_alias}/{rule}/{image_path}": {
             "get": {
                 "tags": [
                     "Delivery Service"
@@ -103,6 +227,9 @@
                     },
                     "404": {
                         "description": "Image Not Found"
+                    },
+                    "500": {
+                        "description": "Internal error"
                     }
                 },
                 "parameters": [
@@ -114,29 +241,317 @@
                         "type": "string"
                     },
                     {
-                        "name": "site_path",
+                        "name": "site_alias",
                         "in": "path",
                         "description": "site path set when creating the account",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "name": "size",
+                        "name": "rule",
                         "in": "path",
-                        "description": "size of the image with the format widthxheight (300x300)",
+                        "description": "rule to apply to the image",
                         "required": true,
                         "type": "string"
                     }
                 ]
             }
         },
-        "/identity": {
+        "/{site_alias}/{image_path}": {
+            "get": {
+                "tags": [
+                    "Delivery Service"
+                ],
+                "summary": "get the image",
+                "description": "get the image",
+                "responses": {
+                    "200": {
+                        "description": "Image Found"
+                    },
+                    "404": {
+                        "description": "Image Not Found"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "image_path",
+                        "in": "path",
+                        "description": "path to image, path/to/image.jpg",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/bucket/{site_alias}/rules": {
             "post": {
                 "tags": [
-                    "Identity Service"
+                    "Accout-configuration Service"
                 ],
                 "summary": "Identity Creation",
                 "description": "The Identity endpoint creates a user in the service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Identity created correctly"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            },
+            "get": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Get all the rules for a bucket",
+                "description": "Get all the rules for bucket",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/bucket/{site_alias}/rules/{rule_name}": {
+            "get": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Get Rule",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "404": {
+                        "description": "Rule not found"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "rule_name",
+                        "in": "path",
+                        "description": "rule_name to get",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Update rule",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Rule updated"
+                    },
+                    "404": {
+                        "description": "Rule Not found"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "rule_name",
+                        "in": "path",
+                        "description": "rule_name to get",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Delete rule",
+                "responses": {
+                    "200": {
+                        "description": "Rule deleted"
+                    },
+                    "404": {
+                        "description": "Rule not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "rule_name",
+                        "in": "path",
+                        "description": "rule_name to get",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/bucket/{site_alias}/watermarks": {
+            "post": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Add a new watermark",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Watermark created correctly"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            },
+            "get": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Get All watermarks information",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/bucket/{site_alias}/watermarks/{watermark_id}": {
+            "get": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Gets a watermark information",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "watermark exists"
+                    },
+                    "404": {
+                        "description": "watermark not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "watermark_id",
+                        "in": "path",
+                        "description": "watermark id",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Update a watermark",
                 "produces": [
                     "application/json"
                 ],
@@ -144,7 +559,53 @@
                     "200": {
                         "description": "Identity created correctly"
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "watermark_id",
+                        "in": "path",
+                        "description": "watermark id",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Accout-configuration Service"
+                ],
+                "summary": "Delete a watermark",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Identity created correctly"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "site_alias",
+                        "in": "path",
+                        "description": "site path set when creating the account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "watermark_id",
+                        "in": "path",
+                        "description": "watermark id",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
             }
         }
     },

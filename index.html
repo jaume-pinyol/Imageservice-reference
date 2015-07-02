@@ -1,13 +1,195 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
-        <div class="container">
-              <h1>ImageService API</h1>
-
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <title>ImageService API</title>
+</head>
+<body>
+<div class="container">
+    <h1>ImageService API</h1>
 <p>Move your app forward with the ImageService API</p>
+
+<h2>Summary</h2>
+<table class="table table-bordered table-condensed swagger--summary">
+    <thead>
+    <tr>
+        <th>Path</th>
+        <th>Method</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="2">
+                        <a href="#path--bucket--site_alias--rules">/bucket/{site_alias}/rules</a>
+                    </td>
+                <td>
+                    <a href="#method--bucket--site_alias--rules-get">GET</a>
+                </td>
+                <td>
+                    Get all the rules for a bucket
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--rules-post">POST</a>
+                </td>
+                <td>
+                    Identity Creation
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="3">
+                        <a href="#path--bucket--site_alias--rules--rule_name-">/bucket/{site_alias}/rules/{rule_name}</a>
+                    </td>
+                <td>
+                    <a href="#method--bucket--site_alias--rules--rule_name--delete">DELETE</a>
+                </td>
+                <td>
+                    Delete rule
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--rules--rule_name--get">GET</a>
+                </td>
+                <td>
+                    Get Rule
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--rules--rule_name--put">PUT</a>
+                </td>
+                <td>
+                    Update rule
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="2">
+                        <a href="#path--bucket--site_alias--watermarks">/bucket/{site_alias}/watermarks</a>
+                    </td>
+                <td>
+                    <a href="#method--bucket--site_alias--watermarks-get">GET</a>
+                </td>
+                <td>
+                    Get All watermarks information
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--watermarks-post">POST</a>
+                </td>
+                <td>
+                    Add a new watermark
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="3">
+                        <a href="#path--bucket--site_alias--watermarks--watermark_id-">/bucket/{site_alias}/watermarks/{watermark_id}</a>
+                    </td>
+                <td>
+                    <a href="#method--bucket--site_alias--watermarks--watermark_id--delete">DELETE</a>
+                </td>
+                <td>
+                    Delete a watermark
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--watermarks--watermark_id--get">GET</a>
+                </td>
+                <td>
+                    Gets a watermark information
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--bucket--site_alias--watermarks--watermark_id--put">PUT</a>
+                </td>
+                <td>
+                    Update a watermark
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="2">
+                        <a href="#path--file">/file</a>
+                    </td>
+                <td>
+                    <a href="#method--file-delete">DELETE</a>
+                </td>
+                <td>
+                    Batch delete
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--file-post">POST</a>
+                </td>
+                <td>
+                    Uploads an image to the service
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="4">
+                        <a href="#path--file--image_path-">/file/{image_path}</a>
+                    </td>
+                <td>
+                    <a href="#method--file--image_path--delete">DELETE</a>
+                </td>
+                <td>
+                    Removes an image from the service
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--file--image_path--get">GET</a>
+                </td>
+                <td>
+                    Gets an image
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--file--image_path--post">POST</a>
+                </td>
+                <td>
+                    Uploads an image to the service
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#method--file--image_path--put">PUT</a>
+                </td>
+                <td>
+                    Updates an image
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="1">
+                        <a href="#path---site_alias---image_path-">/{site_alias}/{image_path}</a>
+                    </td>
+                <td>
+                    <a href="#method---site_alias---image_path--get">GET</a>
+                </td>
+                <td>
+                    get the image
+                </td>
+            </tr>
+            <tr>
+                    <td class="swagger--summary-path" rowspan="1">
+                        <a href="#path---site_alias---rule---image_path-">/{site_alias}/{rule}/{image_path}</a>
+                    </td>
+                <td>
+                    <a href="#method---site_alias---rule---image_path--get">GET</a>
+                </td>
+                <td>
+                    get the image
+                </td>
+            </tr>
+    </tbody>
+</table>
 
 
     <h2>Security</h2>
@@ -35,14 +217,15 @@
 <h2>Paths</h2>
 
     
-    <div class="panel panel-method-delete">
+<span id="path-/bucket/{site_alias}/rules"></span>
+    <div id="method--bucket--site_alias--rules-get" class="swagger--panel-method-get panel">
     <div class="panel-heading">
-        <div class="method-summary">Deletes an image to the service</div>
-        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/file/{image_path}</strong></h3>
+        <div class="method-summary">Get all the rules for a bucket</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/bucket/{site_alias}/rules</strong></h3>
     </div>
     <div class="panel-body">
         <section class="sw-method-description">
-            Deletes an image using the upload service
+            Get all the rules for bucket
         </section>
         
         
@@ -58,15 +241,916 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>image_path</td>
-                    <td>path to image, path/to/image.jpg</td>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
                     <td>path</td>
                     <td>
-                        string                    </td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
                 </tr>
             </tbody>
         </table>
     </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Ok
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--rules-post" class="swagger--panel-method-post panel">
+    <div class="panel-heading">
+        <div class="method-summary">Identity Creation</div>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/bucket/{site_alias}/rules</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            The Identity endpoint creates a user in the service
+        </section>
+        
+    <section class="sw-request-body">
+        <p><span class="label label-default">application/json</span> </p>
+    </section>
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Identity created correctly
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+<span id="path-/bucket/{site_alias}/rules/{rule_name}"></span>
+    <div id="method--bucket--site_alias--rules--rule_name--delete" class="swagger--panel-method-delete panel">
+    <div class="panel-heading">
+        <div class="method-summary">Delete rule</div>
+        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/bucket/{site_alias}/rules/{rule_name}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>rule_name
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>rule_name to get</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Rule deleted
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Rule not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--rules--rule_name--get" class="swagger--panel-method-get panel">
+    <div class="panel-heading">
+        <div class="method-summary">Get Rule</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/bucket/{site_alias}/rules/{rule_name}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>rule_name
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>rule_name to get</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Ok
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Rule not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--rules--rule_name--put" class="swagger--panel-method-put panel">
+    <div class="panel-heading">
+        <div class="method-summary">Update rule</div>
+        <h3 class="panel-title"><span class="method-name">PUT</span> <strong>/bucket/{site_alias}/rules/{rule_name}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>rule_name
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>rule_name to get</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>201</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Rule updated
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Rule Not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+<span id="path-/bucket/{site_alias}/watermarks"></span>
+    <div id="method--bucket--site_alias--watermarks-get" class="swagger--panel-method-get panel">
+    <div class="panel-heading">
+        <div class="method-summary">Get All watermarks information</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/bucket/{site_alias}/watermarks</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Ok
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--watermarks-post" class="swagger--panel-method-post panel">
+    <div class="panel-heading">
+        <div class="method-summary">Add a new watermark</div>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/bucket/{site_alias}/watermarks</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>201</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Watermark created correctly
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+<span id="path-/bucket/{site_alias}/watermarks/{watermark_id}"></span>
+    <div id="method--bucket--site_alias--watermarks--watermark_id--delete" class="swagger--panel-method-delete panel">
+    <div class="panel-heading">
+        <div class="method-summary">Delete a watermark</div>
+        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/bucket/{site_alias}/watermarks/{watermark_id}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>watermark_id
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>watermark id</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Identity created correctly
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--watermarks--watermark_id--get" class="swagger--panel-method-get panel">
+    <div class="panel-heading">
+        <div class="method-summary">Gets a watermark information</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/bucket/{site_alias}/watermarks/{watermark_id}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>watermark_id
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>watermark id</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            watermark exists
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            watermark not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal server error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    <div id="method--bucket--site_alias--watermarks--watermark_id--put" class="swagger--panel-method-put panel">
+    <div class="panel-heading">
+        <div class="method-summary">Update a watermark</div>
+        <h3 class="panel-title"><span class="method-name">PUT</span> <strong>/bucket/{site_alias}/watermarks/{watermark_id}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>watermark_id
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>watermark id</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Identity created correctly
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+<span id="path-/file"></span>
+    <div id="method--file-delete" class="swagger--panel-method-delete panel">
+    <div class="panel-heading">
+        <div class="method-summary">Batch delete</div>
+        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/file</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Deletes an image using the upload service
+        </section>
+        
+        
         
     <section class="sw-response-body">
         <p><span class="label label-default">application/json</span> </p>
@@ -115,14 +1199,101 @@
         </table>
     </section>
     </div>
-</div>    <div class="panel panel-method-post">
+</div>    <div id="method--file-post" class="swagger--panel-method-post panel">
     <div class="panel-heading">
         <div class="method-summary">Uploads an image to the service</div>
-        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/file/{image_path}</strong></h3>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/file</strong></h3>
     </div>
     <div class="panel-body">
         <section class="sw-method-description">
-            Uploads an image using the upload service
+            Uploads an image using the upload service. A x-location and x-id headers are set with the path. Id will be a UUID.
+        </section>
+        
+        
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">application/json</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image already exists
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>201</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image succesfully uploaded
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            <section class="sw-request-security">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-request-security-schema"></th>
+                <th class="sw-request-security-scopes"></th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
+                        <td>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </section>
+    </div>
+</div>    
+<span id="path-/file/{image_path}"></span>
+    <div id="method--file--image_path--delete" class="swagger--panel-method-delete panel">
+    <div class="panel-heading">
+        <div class="method-summary">Removes an image from the service</div>
+        <h3 class="panel-title"><span class="method-name">DELETE</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Removes an image from the service
         </section>
         
         
@@ -138,11 +1309,243 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>image_path</td>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
                     <td>path to image, path/to/image.jpg</td>
                     <td>path</td>
                     <td>
-                        string                    </td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                            ,<span class="json-property-type">
+        string
+</span>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image deleted
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            <section class="sw-request-security">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-request-security-schema"></th>
+                <th class="sw-request-security-scopes"></th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
+                        <td>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </section>
+    </div>
+</div>    <div id="method--file--image_path--get" class="swagger--panel-method-get panel">
+    <div class="panel-heading">
+        <div class="method-summary">Gets an image</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Updates an image with a different one
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                            ,<span class="json-property-type">
+        string
+</span>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p><span class="label label-default">image/(jpg|png|webp)</span> </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            <section class="sw-request-security">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-request-security-schema"></th>
+                <th class="sw-request-security-scopes"></th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
+                        <td>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </section>
+    </div>
+</div>    <div id="method--file--image_path--post" class="swagger--panel-method-post panel">
+    <div class="panel-heading">
+        <div class="method-summary">Uploads an image to the service</div>
+        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/file/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Uploads an image using the upload service. A Location header is set with the path. The image_path will be the image id.
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                            ,<span class="json-property-type">
+        string
+</span>
+
+
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -221,18 +1624,49 @@
         </table>
     </section>
     </div>
-</div>    
-    <div class="panel panel-method-post">
+</div>    <div id="method--file--image_path--put" class="swagger--panel-method-put panel">
     <div class="panel-heading">
-        <div class="method-summary">Identity Creation</div>
-        <h3 class="panel-title"><span class="method-name">POST</span> <strong>/identity</strong></h3>
+        <div class="method-summary">Updates an image</div>
+        <h3 class="panel-title"><span class="method-name">PUT</span> <strong>/file/{image_path}</strong></h3>
     </div>
     <div class="panel-body">
         <section class="sw-method-description">
-            The Identity endpoint creates a user in the service
+            Updates an image with a different one
         </section>
         
         
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                            ,<span class="json-property-type">
+        string
+</span>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
         
     <section class="sw-response-body">
         <p><span class="label label-default">application/json</span> </p>
@@ -247,10 +1681,36 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>200</td>
+                    <td>201</td>
                     <td>
                         <div class="sw-response-description-text">
-                            Identity created correctly
+                            Image succesfully uploaded
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image not found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
                         </div>
                         <section class="visible-xs visible-sm">
                             
@@ -263,12 +1723,30 @@
         </table>
     </section>
 
-            </div>
+            <section class="sw-request-security">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-request-security-schema"></th>
+                <th class="sw-request-security-scopes"></th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><a href="#security-definition-internalApiKey">internalApiKey</a></td>
+                        <td>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </section>
+    </div>
 </div>    
-    <div class="panel panel-method-get">
+<span id="path-/{site_alias}/{image_path}"></span>
+    <div id="method---site_alias---image_path--get" class="swagger--panel-method-get panel">
     <div class="panel-heading">
         <div class="method-summary">get the image</div>
-        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/{site_path}/{size}/{image_path}</strong></h3>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/{site_alias}/{image_path}</strong></h3>
     </div>
     <div class="panel-body">
         <section class="sw-method-description">
@@ -288,25 +1766,30 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>image_path</td>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
                     <td>path to image, path/to/image.jpg</td>
                     <td>path</td>
                     <td>
-                        string                    </td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
                 </tr>
                 <tr>
-                    <td>site_path</td>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
                     <td>site path set when creating the account</td>
                     <td>path</td>
                     <td>
-                        string                    </td>
-                </tr>
-                <tr>
-                    <td>size</td>
-                    <td>size of the image with the format widthxheight (300x300)</td>
-                    <td>path</td>
-                    <td>
-                        string                    </td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -350,6 +1833,142 @@
                     <td class="hidden-xs hidden-sm">
 </td>
                 </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+<span id="path-/{site_alias}/{rule}/{image_path}"></span>
+    <div id="method---site_alias---rule---image_path--get" class="swagger--panel-method-get panel">
+    <div class="panel-heading">
+        <div class="method-summary">get the image</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/{site_alias}/{rule}/{image_path}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            get the image
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>image_path
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>path to image, path/to/image.jpg</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>site_alias
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>site path set when creating the account</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>rule
+                            <span class="json-property-required"></span>
+                        </td>
+                    <td>rule to apply to the image</td>
+                    <td>path</td>
+                    <td>
+                        <span class="json-property-type">
+        string
+</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image Found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Image Not Found
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Internal error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+</td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -359,6 +1978,6 @@
 
 <h2>Definitions</h2>
 
-        </div>
-    </body>
+</div>
+</body>
 </html>
